@@ -1,0 +1,122 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h1 class="fs-4 mb-0">Inscription à FormCat</h1>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="reactiveForm_inscription"
+                (ngSubmit)="onSubmit_inscription()"
+                #form_inscription="ngForm">
+
+            <!-- Champ username -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="username">Prénom et Nom</label>
+              <input id="username"
+                     class="form-control"
+                     type="text"
+                     formControlName="username"
+                     placeholder="Votre username"
+                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              @if (submitted && f.username.errors) {
+                <div class="invalid-feedback">
+                  @if (f.username.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ adresse -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="adresse">Adresse</label>
+              <input id="adresse"
+                     class="form-control"
+                     type="text"
+                     formControlName="adresse"
+                     placeholder="Votre prénom"
+                     [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }" />
+              @if (submitted && f.adresse.errors) {
+                <div class="invalid-feedback">
+                  @if (f.adresse.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+             <!-- Champ Téléphone -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="telephone">Téléphone</label>
+              <input id="telephone"
+                     class="form-control"
+                     type="number"
+                     formControlName="telephone"
+                     placeholder="Votre numéro de téléphone"
+                     [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" />
+            </div>
+
+            <!-- Champ Email -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="email">Email</label>
+              <input id="email"
+                     class="form-control"
+                     type="email"
+                     formControlName="email"
+                     placeholder="Votre email"
+                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              @if (submitted && f.email.errors) {
+                <div class="invalid-feedback">
+                  @if (f.email.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                  @if (f.email.errors.email) {
+                    <div>Veuillez entrer un email valide</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ Mot de passe -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="password">Mot de passe</label>
+              <input id="password"
+                     class="form-control"
+                     type="password"
+                     formControlName="password"
+                     placeholder="Votre mot de passe"
+                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              @if (submitted && f.password.errors) {
+                <div class="invalid-feedback">
+                  @if (f.password.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                  @if (f.password.errors.minlength) {
+                    <div>Le mot de passe doit contenir au moins 6 caractères</div>
+                  }
+                </div>
+              }
+            </div>
+
+
+
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      (click)="onReset_inscription()">Réinitialiser</button>
+              <button type="button"
+                      class="btn btn-primary"
+                      [disabled]="loading_inscription"
+                      (click)="form_inscription.ngSubmit.emit()">
+                {{ loading_inscription ? "En cours ..." : "S'inscrire" }}
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <p class="mb-0">Déjà inscrit ? <a [routerLink]="['/public/login']">Connectez-vous</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

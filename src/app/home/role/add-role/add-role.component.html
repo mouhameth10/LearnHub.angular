@@ -1,0 +1,69 @@
+<div class="modal-header" data-bs-theme="ligth">
+      <h1 class="modal-title fs-5">Ajouter role</h1>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="reactiveForm_add_role" 
+            (ngSubmit)="onSubmit_add_role()" 
+            #form_add_role="ngForm" 
+            class="row">
+        
+            <!-- Champ Nom Role -->
+            <div class="form-group col-sm-12">
+              <label class="form-label" for="nom_role">Nom Role</label>
+              <input id="nom_role" class="form-control" 
+                     type="text" 
+                     formControlName="nom_role" 
+                     placeholder="Nom Role"  
+                     [ngClass]="{ 'is-invalid': submitted && f.nom_role.errors }"/>
+              @if (submitted && f.nom_role.errors) {
+                <div class="invalid-feedback">
+                  @if (f.nom_role.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ Description -->
+            <div class="form-group col-sm-12">
+              <label class="form-label" for="description">Description</label>
+              <input id="description" class="form-control" 
+                     type="text" 
+                     formControlName="description" 
+                     placeholder="Description"  
+                     [ngClass]="{ 'is-invalid': submitted && f.description.errors }"/>
+              @if (submitted && f.description.errors) {
+                <div class="invalid-feedback">
+                  @if (f.description.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ Created At -->
+            <div class="form-group col-sm-12">
+              <label class="form-label" for="created_at">Created At</label>
+              <input id="created_at" class="form-control" 
+                     type="text" 
+                     formControlName="created_at" 
+                     placeholder="Created At"  
+                     [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
+              @if (submitted && f.created_at.errors) {
+                <div class="invalid-feedback">
+                  @if (f.created_at.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary m-2" [disabled]="loading_add_role || loading_get_details_add_role_form"
+      (click)="form_add_role.ngSubmit.emit()">
+      {{ loading_add_role ? "En cours ..." : "Valider" }}
+      </button>
+      <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Fermer</button>
+    </div>

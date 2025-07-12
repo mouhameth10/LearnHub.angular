@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* // Importing NG-Select styles */
+@import url(../node_modules/@ng-select/ng-select/themes/default.theme.css);
+/* Importing Bootstrap CSS file. */
+@import 'bootstrap/dist/css/bootstrap.css';
+/* // Importing bootstrap icons */
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+/* // Importing NG-Select styles */
+@import url(../node_modules/@ng-select/ng-select/themes/default.theme.css);

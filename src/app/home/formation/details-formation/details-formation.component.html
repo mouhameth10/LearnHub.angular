@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">Détails de la formation</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  @if (formation) {
+    <h5 class="text-primary fw-bold">{{ formation.intitule }}</h5>
+    <p><strong>Domaine :</strong> {{ formation.domaine }}</p>
+    <p><strong>Lieu :</strong> {{ formation.lieu }}</p>
+    <p><strong>Date :</strong> Du {{ formation.date_debut }} au {{ formation.date_fin }}</p>
+    <p><strong>Durée :</strong> {{ formation.duree }}</p>
+    <p><strong>Montant :</strong> {{ formation.montant }} FCFA</p>
+    <p><strong>Type :</strong> {{ formation.type_formation }}</p>
+    <p><strong>Statut :</strong> {{ formation.statut }}</p>
+  
+    <p><strong>Fiche programme :</strong> {{ formation.fiche_programme || 'Non disponible' }}</p>
+  } @else {
+    <p class="text-danger">Aucune formation sélectionnée.</p>
+  }
+</div>
+<div class="modal-footer">
+  @if (formation) {
+    <button type="button"
+            class="btn btn-primary"
+            [disabled]="loading_inscription"
+            (click)="registerToFormation()">
+      {{ loading_inscription ? "Inscription en cours ..." : "S'inscrire à la formation" }}
+    </button>
+  }
+  <button type="button"
+          class="btn btn-outline-secondary"
+          (click)="activeModal.close()">Fermer</button>
+</div>

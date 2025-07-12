@@ -1,0 +1,94 @@
+<!-- Entête -->
+<div class="card p-3 position-sticky top-0 z-1">
+  <div class="d-flex align-items-center justify-content-between mb-1">
+    <div class="fs-4 fw-bold">
+      Formations {{ list.length == les_formations.length ? list.length : list.length + "/" + les_formations.length }}
+    </div>
+    <div>
+      @if (currentUser && currentUser.id_role !== 2) {
+        <button class="btn btn-primary" (click)="openModal_add_formation()">
+          <i class="bi bi-plus-square-dotted"></i> Formation
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="d-flex gap-1 justify-content-end">
+    <ng-select
+      [multiple]="true"
+      [closeOnSelect]="false"
+      placeholder="Rechercher ici ..."
+      notFoundText="Aucun résultat"
+      class="no-limit"
+      [(ngModel)]="filter.text"
+      (search)="filter_change($event)"
+      (change)="filter_change()"
+      style="min-width: 400px;">
+    </ng-select>
+  </div>
+</div>
+
+<!-- Liste sous forme de cartes -->
+<div class="row mt-3">
+  <!-- Chargement -->
+  @if (loading_get_formation) {
+    <div class="col-12 text-center my-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+    </div>
+  }
+
+  <!-- Aucune donnée -->
+  @if (list.length == 0) {
+    <div class="col-12">
+      <div class="alert alert-info text-center" role="alert">
+        Aucune donnée trouvée.
+      </div>
+    </div>
+  }
+
+  <!-- Cartes de formations -->
+  @for (one_formation of list; track one_formation) {
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-sm h-100 border-0 hover-shadow transition"
+           (click)="openModal_details_formation(one_formation)"
+           style="cursor: pointer; border-radius: 15px;">
+        <div class="card-body">
+          <h5 class="card-title text-primary fw-bold">
+            <i class="bi bi-mortarboard-fill me-2 text-dark"></i>{{ one_formation.intitule }}
+          </h5>
+          <p class="mb-2">
+            <i class="bi bi-journal-text me-2 text-secondary"></i>
+            <strong>Domaine :</strong> {{ one_formation.domaine }}
+          </p>
+          <p class="mb-2">
+            <i class="bi bi-geo-alt-fill me-2 text-secondary"></i>
+            <strong>Lieu :</strong> {{ one_formation.lieu }}
+          </p>
+          <p class="mb-2">
+            <i class="bi bi-calendar3 me-2 text-secondary"></i>
+            <strong>Date :</strong> Du {{ one_formation.date_debut }} au {{ one_formation.date_fin }}
+          </p>
+          <p class="mb-0">
+            <i class="bi bi-cash-coin me-2 text-secondary"></i>
+            <strong>Montant :</strong> {{ one_formation.montant }} FCFA
+          </p>
+        </div>
+        @if (currentUser && currentUser.id_role !== 2) {
+          <div class="card-footer bg-white d-flex justify-content-end gap-2 border-top-0">
+            <button class="btn btn-outline-primary btn-sm"
+                    (click)="openModal_edit_formation(one_formation); $event.stopPropagation();">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-sm"
+                    [disabled]="loading_delete_formation"
+                    (click)="delete_formation(one_formation); $event.stopPropagation();">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

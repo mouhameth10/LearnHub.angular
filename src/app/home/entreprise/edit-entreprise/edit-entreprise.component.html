@@ -1,0 +1,67 @@
+<div class="modal-header" data-bs-theme="ligth">
+        <h1 class="modal-title fs-5">Modifier entreprise</h1>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="reactiveForm_edit_entreprise" (ngSubmit)="onSubmit_edit_entreprise()" #form_edit_entreprise="ngForm" class="row">
+        
+
+            <!-- Champ Image -->
+            <div class="form-group col-sm-12">
+              <label class="form-label" for="image">Image</label>
+              <input id="image" class="form-control" 
+                     type="text" 
+                     formControlName="image" 
+                     placeholder="Image"  
+                     [ngClass]="{ 'is-invalid': submitted && f.image.errors }"/>
+              @if (submitted && f.image.errors) {
+                <div class="invalid-feedback">
+                  @if (f.image.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ Nom Entreprise -->
+            <div class="form-group col-sm-12">
+              <label class="form-label" for="nom_entreprise">Nom Entreprise</label>
+              <input id="nom_entreprise" class="form-control" 
+                     type="text" 
+                     formControlName="nom_entreprise" 
+                     placeholder="Nom Entreprise"  
+                     [ngClass]="{ 'is-invalid': submitted && f.nom_entreprise.errors }"/>
+              @if (submitted && f.nom_entreprise.errors) {
+                <div class="invalid-feedback">
+                  @if (f.nom_entreprise.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ Created At -->
+            <div class="form-group col-sm-12">
+              <label class="form-label" for="created_at">Created At</label>
+              <input id="created_at" class="form-control" 
+                     type="text" 
+                     formControlName="created_at" 
+                     placeholder="Created At"  
+                     [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
+              @if (submitted && f.created_at.errors) {
+                <div class="invalid-feedback">
+                  @if (f.created_at.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary m-2" [disabled]="loading_edit_entreprise ||
+      loading_get_details_edit_entreprise_form" (click)="form_edit_entreprise.ngSubmit.emit()">
+          {{ loading_edit_entreprise ? "En cours ..." : "Valider" }}
+      </button>
+      <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Fermer</button>
+    </div>

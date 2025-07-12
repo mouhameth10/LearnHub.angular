@@ -1,0 +1,69 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h1 class="fs-4 mb-0 text-center">Connexion à FormCat</h1>
+          <p class="subtitle text-center text-white-50 mt-2">Merci de renseigner vos informations de connexion</p>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="reactiveForm_login_login"
+                (ngSubmit)="onSubmit_login_login()"
+                #form_login_login="ngForm">
+
+            <!-- Champ Login -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="login">Login</label>
+              <input id="login"
+                     class="form-control"
+                     type="text"
+                     formControlName="login"
+                     placeholder="Votre login"
+                     [ngClass]="{ 'is-invalid': submitted && f.login.errors }" />
+              @if (submitted && f.login.errors) {
+                <div class="invalid-feedback">
+                  @if (f.login.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Champ Mot de passe -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="pwd">Mot de passe</label>
+              <input id="pwd"
+                     class="form-control"
+                     type="password"
+                     formControlName="pwd"
+                     placeholder="Votre mot de passe"
+                     [ngClass]="{ 'is-invalid': submitted && f.pwd.errors }" />
+              @if (submitted && f.pwd.errors) {
+                <div class="invalid-feedback">
+                  @if (f.pwd.errors.required) {
+                    <div>Ce champ est obligatoire</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button"
+                      class="btn btn-outline-secondary"
+                      (click)="onReset_login_login()">Réinitialiser</button>
+              <button type="button"
+                      class="btn btn-primary"
+                      [disabled]="loading_login_login"
+                      (click)="form_login_login.ngSubmit.emit()">
+                {{ loading_login_login ? "En cours ..." : "Se connecter" }}
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <p class="mb-0">Pas de compte ? <a [routerLink]="['/public/inscription']">Inscrivez-vous</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

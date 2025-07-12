@@ -1,0 +1,619 @@
+{
+  "projectName": "projet1.angular",
+  "decription": "Fichier de configuration de Taf",
+  "taf_base_url": "http://localhost/learnhub.php/",
+  "les_modules": [
+    {
+      "module": "home",
+      "les_tables": [
+        {
+          "table": "entreprise",
+          "description": [
+            "id_entreprise",
+            "image",
+            "nom_entreprise",
+            "created_at"
+          ],
+          "table_descriptions": {
+            "table_name": "entreprise",
+            "cle_primaire": {
+              "Field": "id_entreprise",
+              "Type": "int",
+              "IS_NULLABLE": "NO",
+              "Default": null,
+              "Extra": "",
+              "Key": "PRI",
+              "REFERENCED_TABLE_NAME": null,
+              "REFERENCED_COLUMN_NAME": null,
+              "explications": "clé primaire"
+            },
+            "les_colonnes": [
+              {
+                "Field": "id_entreprise",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "PRI",
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": "clé primaire"
+              },
+              {
+                "Field": "image",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "nom_entreprise",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              }
+            ]
+          },
+          "les_types": ["add", "edit", "list", "details", "type"]
+        },
+        {
+          "table": "formation",
+          "description": [
+            "id_formation",
+            "id_utilisateur",
+            "domaine",
+            "intitule",
+            "lieu",
+            "date_debut",
+            "date_fin",
+            "duree",
+            "montant",
+            "type_formation",
+            "fiche_programme",
+            "statut",
+            "etat",
+            "created_at",
+            "updated_at"
+          ],
+          "table_descriptions": {
+            "table_name": "formation",
+            "cle_primaire": {
+              "Field": "id_formation",
+              "Type": "int",
+              "IS_NULLABLE": "NO",
+              "Default": null,
+              "Extra": "",
+              "Key": "PRI",
+              "REFERENCED_TABLE_NAME": null,
+              "REFERENCED_COLUMN_NAME": null,
+              "explications": "clé primaire"
+            },
+            "les_colonnes": [
+              {
+                "Field": "id_formation",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "PRI",
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": "clé primaire"
+              },
+              {
+                "Field": "id_utilisateur",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "MUL",
+                "REFERENCED_TABLE_NAME": "utilisateur",
+                "REFERENCED_COLUMN_NAME": "id_utilisateur",
+                "explications": "clé étrangère liée à la colonne id_utilisateur de la table utilisateur"
+              },
+              {
+                "Field": "domaine",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "intitule",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "lieu",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "date_debut",
+                "Type": "date",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "date_fin",
+                "Type": "date",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "duree",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "montant",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "type_formation",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "fiche_programme",
+                "Type": "text",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "statut",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "etat",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              }
+            ]
+          },
+          "les_types": ["add", "edit", "list", "details", "type"]
+        },
+        {
+          "table": "inscription",
+          "description": [
+            "id_inscription",
+            "id_utilisateur",
+            "id_formation",
+            "date_inscription",
+            "statut",
+            "etat"
+          ],
+          "table_descriptions": {
+            "table_name": "inscription",
+            "cle_primaire": {
+              "Field": "id_inscription",
+              "Type": "int",
+              "IS_NULLABLE": "NO",
+              "Default": null,
+              "Extra": "",
+              "Key": "PRI",
+              "REFERENCED_TABLE_NAME": null,
+              "REFERENCED_COLUMN_NAME": null,
+              "explications": "clé primaire"
+            },
+            "les_colonnes": [
+              {
+                "Field": "id_inscription",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "PRI",
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": "clé primaire"
+              },
+              {
+                "Field": "id_formation",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "MUL",
+                "REFERENCED_TABLE_NAME": "formation",
+                "REFERENCED_COLUMN_NAME": "id_formation",
+                "explications": "clé étrangère liée à la colonne id_formation de la table formation"
+              },
+              {
+                "Field": "id_utilisateur",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "MUL",
+                "REFERENCED_TABLE_NAME": "utilisateur",
+                "REFERENCED_COLUMN_NAME": "id_utilisateur",
+                "explications": "clé étrangère liée à la colonne id_utilisateur de la table utilisateur"
+              },
+              {
+                "Field": "date_inscription",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "statut",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "etat",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              }
+            ]
+          },
+          "les_types": ["add", "edit", "list", "details", "type"]
+        },
+        {
+          "table": "role",
+          "description": ["id_role", "nom_role", "description", "created_at"],
+          "table_descriptions": {
+            "table_name": "role",
+            "cle_primaire": {
+              "Field": "id_role",
+              "Type": "int",
+              "IS_NULLABLE": "NO",
+              "Default": null,
+              "Extra": "",
+              "Key": "PRI",
+              "REFERENCED_TABLE_NAME": null,
+              "REFERENCED_COLUMN_NAME": null,
+              "explications": "clé primaire"
+            },
+            "les_colonnes": [
+              {
+                "Field": "id_role",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "PRI",
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": "clé primaire"
+              },
+              {
+                "Field": "nom_role",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "description",
+                "Type": "text",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              }
+            ]
+          },
+          "les_types": ["add", "edit", "list", "details", "type"]
+        },
+        {
+          "table": "utilisateur",
+          "description": [
+            "id_utilisateur",
+            "id_role",
+            "image",
+            "username",
+            "adresse",
+            "telephone",
+            "email",
+            "password",
+            "statut",
+            "etat",
+            "created_at",
+            "updated_at"
+          ],
+          "table_descriptions": {
+            "table_name": "utilisateur",
+            "cle_primaire": {
+              "Field": "id_utilisateur",
+              "Type": "int",
+              "IS_NULLABLE": "NO",
+              "Default": null,
+              "Extra": "",
+              "Key": "PRI",
+              "REFERENCED_TABLE_NAME": null,
+              "REFERENCED_COLUMN_NAME": null,
+              "explications": "clé primaire"
+            },
+            "les_colonnes": [
+              {
+                "Field": "id_utilisateur",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "PRI",
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": "clé primaire"
+              },
+              {
+                "Field": "id_role",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": "MUL",
+                "REFERENCED_TABLE_NAME": "role",
+                "REFERENCED_COLUMN_NAME": "id_role",
+                "explications": "clé étrangère liée à la colonne id_role de la table role"
+              },
+              {
+                "Field": "image",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "username",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "adresse",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "telephone",
+                "Type": "int",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "email",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "password",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "statut",
+                "Type": "varchar",
+                "IS_NULLABLE": "NO",
+                "Default": null,
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "etat",
+                "Type": "int",
+                "IS_NULLABLE": "YES",
+                "Default": "NULL",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              },
+              {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "IS_NULLABLE": "NO",
+                "Default": "current_timestamp()",
+                "Extra": "",
+                "Key": null,
+                "REFERENCED_TABLE_NAME": null,
+                "REFERENCED_COLUMN_NAME": null,
+                "explications": ""
+              }
+            ]
+          },
+          "les_types": ["add", "edit", "list", "details", "type"]
+        }
+      ]
+    },
+    {
+      "module": "public",
+      "les_tables": [
+        {
+          "table": "login",
+          "description": ["login", "pwd"],
+          "les_types": ["login"]
+        }
+      ]
+    }
+  ]
+}

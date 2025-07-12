@@ -1,0 +1,108 @@
+<div class="container-fluid p-0">
+  <!-- Bannière principale avec animation -->
+  <div class="jumbotron bg-primary text-white text-center py-5 animate__animated animate__fadeInDown">
+    <h1 class="display-4 fw-bold">Bienvenue sur <span class="text-warning">FormCat</span></h1>
+    <p class="lead">Votre plateforme de formation continue pour booster vos compétences.</p>
+    <button class="btn btn-light btn-lg mt-3 animate__animated animate__pulse animate__infinite" (click)="navigateToLogin()">
+      <i class="bi bi-journal-richtext me-2"></i> Accéder aux formations
+    </button>
+    <a class="btn btn-outline-light btn-lg mt-3 ms-2" [routerLink]="['/public/inscription']">
+      <i class="bi bi-person-plus me-2"></i> S'inscrire
+    </a>
+  </div>
+
+  <!-- Avantages avec effet zoom -->
+  <div class="container py-5">
+    <div class="row text-center">
+      <div class="col-md-4 mb-4 animate__animated animate__zoomIn">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body">
+            <i class="bi bi-laptop display-4 text-primary"></i>
+            <h5 class="card-title mt-3">100% en ligne</h5>
+            <p class="card-text">Formez-vous à votre rythme, où que vous soyez.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 animate__animated animate__zoomIn animate__delay-1s">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body">
+            <i class="bi bi-award-fill display-4 text-primary"></i>
+            <h5 class="card-title mt-3">Certificats</h5>
+            <p class="card-text">Obtenez un certificat reconnu à la fin de chaque formation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 animate__animated animate__zoomIn animate__delay-2s">
+        <div class="card h-100 shadow border-0">
+          <div class="card-body">
+            <i class="bi bi-person-video3 display-4 text-primary"></i>
+            <h5 class="card-title mt-3">Formateurs experts</h5>
+            <p class="card-text">Apprenez auprès de professionnels du secteur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formations populaires avec effet slide -->
+  <div class="bg-light py-5">
+    <div class="container text-center">
+      <h2 class="mb-4 text-primary fw-bold animate__animated animate__fadeInUp">Formations populaires</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3 animate__animated animate__fadeInUp animate__delay-1s" *ngFor="let formation of topFormations">
+          <div class="card shadow border-0 h-100">
+            <div class="card-body text-start">
+              <h5 class="fw-bold text-dark">{{ formation.intitule }}</h5>
+              <p><i class="bi bi-geo-alt-fill text-secondary me-1"></i> {{ formation.lieu }}</p>
+              <p><i class="bi bi-calendar-week text-secondary me-1"></i> {{ formation.date_debut }} → {{ formation.date_fin }}</p>
+              <p><i class="bi bi-currency-exchange text-secondary me-1"></i> {{ formation.montant }} FCFA</p>
+              <button class="btn btn-outline-primary btn-sm mt-2" (click)="goToFormation(formation)">Voir les détails</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Témoignages avec fade -->
+  <div class="container py-5">
+    <h2 class="text-center mb-5 text-primary fw-bold animate__animated animate__fadeIn">Témoignages</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4 animate__animated animate__fadeInUp animate__delay-1s" *ngFor="let temoignage of temoignages">
+        <div class="card shadow border-0">
+          <div class="card-body">
+            <p class="fst-italic">"{{ temoignage.message }}"</p>
+            <h6 class="fw-bold mt-3 mb-0">{{ temoignage.nom }}</h6>
+            <small class="text-muted">{{ temoignage.profession }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partenaires -->
+  <div class="bg-white py-5 border-top">
+    <div class="container text-center">
+      <h4 class="text-primary fw-bold mb-4">Nos partenaires</h4>
+      <div class="d-flex justify-content-center flex-wrap gap-4">
+        <img src="assets/partenaire1.png" alt="Partenaire 1" height="50" class="animate__animated animate__zoomIn"/>
+        <img src="assets/partenaire2.png" alt="Partenaire 2" height="50" class="animate__animated animate__zoomIn animate__delay-1s"/>
+        <img src="assets/partenaire3.png" alt="Partenaire 3" height="50" class="animate__animated animate__zoomIn animate__delay-2s"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appel à l'action -->
+  <div class="bg-primary text-white text-center py-5 animate__animated animate__fadeInUp">
+    <h2 class="fw-bold">Prêt à apprendre ?</h2>
+    <p class="lead">Inscrivez-vous dès maintenant et commencez votre parcours.</p>
+    <button class="btn btn-light btn-lg mt-2" (click)="navigateToLogin()">
+      <i class="bi bi-box-arrow-in-right me-2"></i> Accéder aux formations
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">© 2025 <span class="text-warning fw-bold">FormCat</span>. Tous droits réservés.</p>
+  </footer>
+</div>

@@ -1,0 +1,87 @@
+<!-- Entête -->
+<div class="card p-3 position-sticky top-0 z-1">
+  <div class="d-flex align-items-center justify-content-between mb-1">
+    <div class="fs-4 fw-bold">
+      Inscriptions {{ list.length == les_inscriptions.length ? list.length : list.length + "/" + les_inscriptions.length }}
+    </div>
+    <div>
+      @if (currentUser && currentUser.id_role !== 2) {
+        <button class="btn btn-primary" (click)="openModal_add_inscription()">
+          <i class="bi bi-plus-square-dotted"></i> Inscription
+        </button>
+      }
+    </div>
+  </div>
+  <div class="d-flex gap-1 justify-content-end">
+    <ng-select
+      [multiple]="true"
+      [closeOnSelect]="false"
+      placeholder="Rechercher ici ..."
+      notFoundText="Aucun résultat"
+      class="no-limit"
+      [(ngModel)]="filter.text"
+      (search)="filter_change($event)"
+      (change)="filter_change()"
+      style="min-width: 400px;">
+    </ng-select>
+  </div>
+</div>
+
+<!-- Liste des éléments sous forme de tableau -->
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID Inscription</th>
+        <th scope="col">Participant</th>
+        <th scope="col">Formation</th>
+        <th scope="col">Date Inscription</th>
+        <th scope="col">Statut</th>
+
+        <th scope="col" *ngIf="currentUser && currentUser.id_role !== 2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Affichage du message de chargement -->
+      @if (loading_get_inscription) {
+        <tr>
+          <td [attr.colspan]="currentUser && currentUser.id_role !== 2 ? 7 : 6" class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Chargement...</span>
+            </div>
+          </td>
+        </tr>
+      }
+      <!-- Affichage du message lorsqu'il n'y a pas d'éléments -->
+      @if (list.length == 0 && !loading_get_inscription) {
+        <tr>
+          <td [attr.colspan]="currentUser && currentUser.id_role !== 2 ? 7 : 6" class="text-center">
+            <div class="alert alert-info" role="alert">
+              Aucune donnée trouvée.
+            </div>
+          </td>
+        </tr>
+      }
+      <!-- Boucle pour afficher chaque élément de la liste -->
+      @for (one_inscription of list; track one_inscription) {
+        <tr>
+          <td>{{ one_inscription.id_inscription }}</td>
+          <td>{{ one_inscription.username || one_inscription.id_utilisateur }}</td>
+          <td>{{ one_inscription.intitule || one_inscription.id_formation }}</td>
+          <td>{{ one_inscription.date_inscription }}</td>
+          <td>{{ one_inscription.statut }}</td>
+          <!-- <td>{{ one_inscription.etat === 0 ? 'Actif' : 'Inactif' }}</td> -->
+          @if (currentUser && currentUser.id_role !== 2) {
+            <td>
+              <i style="cursor: pointer;" class="bi bi-pencil-square me-2"
+                 (click)="openModal_edit_inscription(one_inscription)"></i>
+              <i style="cursor: pointer;" class="bi bi-trash"
+                 [class.disabled]="loading_delete_inscription"
+                 (click)="delete_inscription(one_inscription)"></i>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
