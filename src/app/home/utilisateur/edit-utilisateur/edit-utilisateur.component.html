@@ -4,16 +4,16 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="reactiveForm_edit_utilisateur" (ngSubmit)="onSubmit_edit_utilisateur()" #form_edit_utilisateur="ngForm" class="row">
-        
+
 <!-- Erreur : La clé étrangère id_role de la table utilisateur n'est pas référencée -->
 
             <!-- Champ Image -->
-            <div class="form-group col-sm-12">
+            <!-- <div class="form-group col-sm-12">
               <label class="form-label" for="image">Image</label>
-              <input id="image" class="form-control" 
-                     type="text" 
-                     formControlName="image" 
-                     placeholder="Image"  
+              <input id="image" class="form-control"
+                     type="text"
+                     formControlName="image"
+                     placeholder="Image"
                      [ngClass]="{ 'is-invalid': submitted && f.image.errors }"/>
               @if (submitted && f.image.errors) {
                 <div class="invalid-feedback">
@@ -22,15 +22,33 @@
                   }
                 </div>
               }
-            </div>
-
+            </div> -->
+<!-- Champs Id Role avec un contrôle de validité : clé étrangère liée à la colonne id_role de la table role -->
+    <div class="form-group col-sm-6">
+      <label>Role</label>
+      <select [ngClass]="{ 'is-invalid': submitted && f.id_role.errors }" class="form-select" formControlName="id_role">
+        <option value="">Sélectionnez une Role</option>
+        @for (one_role of form_details?.les_roles; track $index) {
+        <option [value]="one_role.id_role">
+          {{one_role.nom_role}}
+        </option>
+        }
+      </select>
+      @if (submitted && f.id_role.errors) {
+      <div class="invalid-feedback">
+        @if (f.id_role.errors.required) {
+        <div>Ce champ est obligatoire</div>
+        }
+      </div>
+      }
+    </div>
             <!-- Champ Username -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="username">Username</label>
-              <input id="username" class="form-control" 
-                     type="text" 
-                     formControlName="username" 
-                     placeholder="Username"  
+              <input id="username" class="form-control"
+                     type="text"
+                     formControlName="username"
+                     placeholder="Username"
                      [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
               @if (submitted && f.username.errors) {
                 <div class="invalid-feedback">
@@ -44,10 +62,10 @@
             <!-- Champ Adresse -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="adresse">Adresse</label>
-              <input id="adresse" class="form-control" 
-                     type="text" 
-                     formControlName="adresse" 
-                     placeholder="Adresse"  
+              <input id="adresse" class="form-control"
+                     type="text"
+                     formControlName="adresse"
+                     placeholder="Adresse"
                      [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }"/>
               @if (submitted && f.adresse.errors) {
                 <div class="invalid-feedback">
@@ -61,10 +79,10 @@
             <!-- Champ Telephone -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="telephone">Telephone</label>
-              <input id="telephone" class="form-control" 
-                     type="text" 
-                     formControlName="telephone" 
-                     placeholder="Telephone"  
+              <input id="telephone" class="form-control"
+                     type="text"
+                     formControlName="telephone"
+                     placeholder="Telephone"
                      [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }"/>
               @if (submitted && f.telephone.errors) {
                 <div class="invalid-feedback">
@@ -78,10 +96,10 @@
             <!-- Champ Email -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="email">Email</label>
-              <input id="email" class="form-control" 
-                     type="text" 
-                     formControlName="email" 
-                     placeholder="Email"  
+              <input id="email" class="form-control"
+                     type="text"
+                     formControlName="email"
+                     placeholder="Email"
                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
               @if (submitted && f.email.errors) {
                 <div class="invalid-feedback">
@@ -95,10 +113,10 @@
             <!-- Champ Password -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="password">Password</label>
-              <input id="password" class="form-control" 
-                     type="text" 
-                     formControlName="password" 
-                     placeholder="Password"  
+              <input id="password" class="form-control"
+                     type="text"
+                     formControlName="password"
+                     placeholder="Password"
                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
               @if (submitted && f.password.errors) {
                 <div class="invalid-feedback">
@@ -112,10 +130,10 @@
             <!-- Champ Statut -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="statut">Statut</label>
-              <input id="statut" class="form-control" 
-                     type="text" 
-                     formControlName="statut" 
-                     placeholder="Statut"  
+              <input id="statut" class="form-control"
+                     type="text"
+                     formControlName="statut"
+                     placeholder="Statut"
                      [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"/>
               @if (submitted && f.statut.errors) {
                 <div class="invalid-feedback">
@@ -129,10 +147,10 @@
             <!-- Champ Etat -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="etat">Etat</label>
-              <input id="etat" class="form-control" 
-                     type="text" 
-                     formControlName="etat" 
-                     placeholder="Etat"  
+              <input id="etat" class="form-control"
+                     type="text"
+                     formControlName="etat"
+                     placeholder="Etat"
                      [ngClass]="{ 'is-invalid': submitted && f.etat.errors }"/>
               @if (submitted && f.etat.errors) {
                 <div class="invalid-feedback">
@@ -146,10 +164,10 @@
             <!-- Champ Created At -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="created_at">Created At</label>
-              <input id="created_at" class="form-control" 
-                     type="text" 
-                     formControlName="created_at" 
-                     placeholder="Created At"  
+              <input id="created_at" class="form-control"
+                     type="text"
+                     formControlName="created_at"
+                     placeholder="Created At"
                      [ngClass]="{ 'is-invalid': submitted && f.created_at.errors }"/>
               @if (submitted && f.created_at.errors) {
                 <div class="invalid-feedback">
@@ -163,10 +181,10 @@
             <!-- Champ Updated At -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="updated_at">Updated At</label>
-              <input id="updated_at" class="form-control" 
-                     type="text" 
-                     formControlName="updated_at" 
-                     placeholder="Updated At"  
+              <input id="updated_at" class="form-control"
+                     type="text"
+                     formControlName="updated_at"
+                     placeholder="Updated At"
                      [ngClass]="{ 'is-invalid': submitted && f.updated_at.errors }"/>
               @if (submitted && f.updated_at.errors) {
                 <div class="invalid-feedback">

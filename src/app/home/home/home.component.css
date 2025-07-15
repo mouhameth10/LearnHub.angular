@@ -1,0 +1,46 @@
+/* Pour la position du dropdown */
+.dropdown {
+  position: relative;
+}
+
+/* Pour cacher le menu par défaut */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
+
+/* Quand on survole le parent (.dropdown), on affiche le menu */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Style pour les liens dans le dropdown */
+.dropdown-menu a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f9fa;
+}

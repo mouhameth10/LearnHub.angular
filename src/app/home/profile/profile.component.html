@@ -1,0 +1,111 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Mon Profil</h2>
+
+  <!-- Carte Profil avec avatar -->
+  <div *ngIf="!loading && !error" class="card mb-4 shadow-sm">
+    <div class="card-body d-flex align-items-center">
+      <img
+        src="https://ui-avatars.com/api/?name={{ utilisateur.username }}&background=random&size=128"
+        alt="Avatar"
+        class="rounded-circle me-4"
+        style="width: 100px; height: 100px; object-fit: cover"
+      />
+      <div>
+        <h5 class="card-title mb-1">{{ utilisateur.username }}</h5>
+        <p class="card-text mb-0"><strong>Email :</strong> {{ utilisateur.email }}</p>
+        <p class="card-text mb-0"><strong>Téléphone :</strong> {{ utilisateur.telephone }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulaire de modification du mot de passe -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">Modifier le mot de passe</h5>
+      <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPasswordChange()">
+        <!-- Mot de passe actuel -->
+        <div class="mb-3 position-relative">
+          <label for="currentPassword" class="form-label">Mot de passe actuel</label>
+          <div class="input-group">
+            <input
+              [type]="showCurrentPassword ? 'text' : 'password'"
+              id="currentPassword"
+              formControlName="currentPassword"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['currentPassword'].errors }"
+            />
+            <button type="button" class="btn btn-outline-secondary" (click)="showCurrentPassword = !showCurrentPassword">
+              <i class="fas" [ngClass]="showCurrentPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <div *ngIf="submitted && f['currentPassword'].errors" class="invalid-feedback d-block">
+            <div *ngIf="f['currentPassword'].errors['required']">
+              Le mot de passe actuel est requis.
+            </div>
+          </div>
+        </div>
+
+        <!-- Nouveau mot de passe -->
+        <div class="mb-3">
+          <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+          <div class="input-group">
+            <input
+              [type]="showNewPassword ? 'text' : 'password'"
+              id="newPassword"
+              formControlName="newPassword"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['newPassword'].errors }"
+            />
+            <button type="button" class="btn btn-outline-secondary" (click)="showNewPassword = !showNewPassword">
+              <i class="fas" [ngClass]="showNewPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <div *ngIf="submitted && f['newPassword'].errors" class="invalid-feedback d-block">
+            <div *ngIf="f['newPassword'].errors['required']">Le nouveau mot de passe est requis.</div>
+            <div *ngIf="f['newPassword'].errors['minlength']">
+              Le mot de passe doit contenir au moins 6 caractères.
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmation du mot de passe -->
+        <div class="mb-4">
+          <label for="confirmPassword" class="form-label">Confirmer le mot de passe</label>
+          <div class="input-group">
+            <input
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': submitted &&
+                  (f['confirmPassword'].errors || passwordForm.errors?.['notMatching'])
+              }"
+            />
+            <button type="button" class="btn btn-outline-secondary" (click)="showConfirmPassword = !showConfirmPassword">
+              <i class="fas" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button>
+          </div>
+          <div *ngIf="submitted" class="invalid-feedback d-block">
+            <div *ngIf="f['confirmPassword'].errors?.['required']">
+              La confirmation du mot de passe est requise.
+            </div>
+            <div *ngIf="passwordForm.errors?.['notMatching']">
+              Les mots de passe ne correspondent pas.
+            </div>
+          </div>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-primary me-2">
+            <span *ngIf="loadingPasswordChange" class="spinner-border spinner-border-sm me-2"></span>
+            Modifier le mot de passe
+          </button>
+          <button type="button" class="btn btn-danger" (click)="confirmAccountDeletion()">
+            Supprimer mon compte
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

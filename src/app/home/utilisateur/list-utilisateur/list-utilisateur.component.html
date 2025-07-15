@@ -34,16 +34,17 @@
         <tr>
           <th scope="col">id_utilisateur</th>
 <th scope="col">id_role</th>
-<th scope="col">image</th>
+<!-- <th scope="col">image</th> -->
 <th scope="col">username</th>
 <th scope="col">adresse</th>
 <th scope="col">telephone</th>
 <th scope="col">email</th>
-<th scope="col">password</th>
+<!-- <th scope="col">password</th> -->
 <th scope="col">statut</th>
-<th scope="col">etat</th>
+<!-- <th scope="col">etat</th>
 <th scope="col">created_at</th>
-<th scope="col">updated_at</th><th scope="col">actions</th>
+<th scope="col">updated_at</th> -->
+<th scope="col">actions</th>
         </tr>
       </thead>
       <tbody>
@@ -72,16 +73,17 @@
           <tr>
             <td>{{one_utilisateur.id_utilisateur}}</td>
 <td>{{one_utilisateur.id_role}}</td>
-<td>{{one_utilisateur.image}}</td>
+<!-- <td>{{one_utilisateur.image}}</td> -->
 <td>{{one_utilisateur.username}}</td>
 <td>{{one_utilisateur.adresse}}</td>
 <td>{{one_utilisateur.telephone}}</td>
 <td>{{one_utilisateur.email}}</td>
-<td>{{one_utilisateur.password}}</td>
+<!-- <td>{{one_utilisateur.password}}</td> -->
 <td>{{one_utilisateur.statut}}</td>
-<td>{{one_utilisateur.etat}}</td>
+<!-- <td>{{one_utilisateur.etat}}</td>
 <td>{{one_utilisateur.created_at}}</td>
-<td>{{one_utilisateur.updated_at}}</td><td>
+<td>{{one_utilisateur.updated_at}}</td> -->
+<td>
     <i style="cursor: pointer;" class="bi bi-pencil-square me-2" (click)="openModal_edit_utilisateur(one_utilisateur)"></i>
     <i style="cursor: pointer;" class="bi bi-trash" (click)="delete_utilisateur(one_utilisateur)"></i>
 </td>

@@ -1,20 +1,41 @@
 <div class="container-fluid">
   <div class="d-flex align-items-center justify-content-between">
-      <div class="fs-1">
-            Module home
-      </div>
-      <div class="d-flex">
-          <div ngbDropdown class="d-inline-block">
-                <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                      Menu
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      @for (one_menu of menu.items; track $index) {
-                      <button ngbDropdownItem [routerLink]="[one_menu.path]"> {{one_menu.libelle}}</button>
-                      }
-                </div>
-          </div>
+    <!-- <div class="fs-1">
+      Module home
+    </div> -->
+    <div class="d-flex">
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+          Menu
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          @for (one_menu of menu.items; track $index) {
+            <button ngbDropdownItem [routerLink]="[one_menu.path]">{{one_menu.libelle}}</button>
+          }
+        </div>
       </div>
     </div>
-    <router-outlet></router-outlet>
+     <div class="dropdown">
+    <a class="d-flex align-items-center text-decoration-none text-dark" href="#" role="button" data-bs-toggle="dropdown">
+      <i class="bi bi-person-circle fs-4 me-2"></i>
+      <span>Compte</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li>
+        <a class="dropdown-item d-flex align-items-center" [routerLink]="['/home/profile']">
+          <i class="bi bi-person me-2"></i> Mon profil
+        </a>
+      </li>
+      <li>
+        <div class="dropdown-divider"></div>
+      </li>
+      <li>
+        <a (click)="openModal_deconnexion()" class="dropdown-item d-flex align-items-center">
+          <i class="bi bi-power text-danger me-2"></i> Déconnexion
+        </a>
+      </li>
+    </ul>
+  </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>

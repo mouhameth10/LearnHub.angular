@@ -5,6 +5,7 @@ import { ListFormationComponent } from './formation/list-formation/list-formatio
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import { ListRoleComponent } from './role/list-role/list-role.component';
 import { ListUtilisateurComponent } from './utilisateur/list-utilisateur/list-utilisateur.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path:"",component:ListFormationComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
 {path:"formation",component:ListFormationComponent},
 {path:"inscription",component:ListInscriptionComponent},
 {path:"role",component:ListRoleComponent},
+{path:"profile",component:ProfileComponent},
 {path:"utilisateur",component:ListUtilisateurComponent}
 ];
 
