@@ -15,7 +15,19 @@
     class="row"
   >
     <!-- Erreur : La clé étrangère id_utilisateur de la table formation n'est pas référencée -->
-
+<div formArrayName="animateur">
+  <div *ngFor="let ctrl of animateurArray.controls; let i = index" style="display: flex; align-items: center;">
+    <ng-select
+      [items]="animateursList"
+      bindLabel="username"
+      bindValue="id_utilisateur"
+      [formControlName]="i"
+      placeholder="Sélectionnez un animateur">
+    </ng-select>
+    <button type="button" (click)="addAnimateurField()" *ngIf="i === animateurArray.length - 1" style="margin-left: 5px;">+</button>
+    <button type="button" (click)="removeAnimateurField(i)" *ngIf="animateurArray.length > 1" style="margin-left: 5px;">-</button>
+  </div>
+</div>
     <!-- Champ Domaine -->
     <div class="form-group col-sm-12">
       <label class="form-label" for="domaine">Domaine</label>
@@ -199,24 +211,22 @@
 
     <!-- Champ Statut -->
     <div class="form-group col-sm-12">
-      <label class="form-label" for="statut">Statut</label>
-      <input
-        id="statut"
-        class="form-control"
-        type="text"
-        formControlName="statut"
-        placeholder="Statut"
-        [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"
-      />
-      @if (submitted && f.statut.errors) {
-      <div class="invalid-feedback">
-        @if (f.statut.errors.required) {
-        <div>Ce champ est obligatoire</div>
-        }
-      </div>
-      }
-    </div>
-
+  <label class="form-label" for="statut">Statut</label>
+  <select
+    id="statut"
+    class="form-control"
+    formControlName="statut"
+    [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"
+  >
+    <option value="">-- Sélectionnez le statut --</option>
+    <option value="Ouvert">Ouvert</option>
+    <option value="En cours">En cours</option>
+    <option value="Clôturée">Clôturée</option>
+  </select>
+  <div *ngIf="submitted && f.statut.errors" class="invalid-feedback">
+    <div *ngIf="f.statut.errors.required">Ce champ est obligatoire</div>
+  </div>
+</div>
     <!-- Champ Etat -->
     <!-- <div class="form-group col-sm-12">
               <label class="form-label" for="etat">Etat</label>

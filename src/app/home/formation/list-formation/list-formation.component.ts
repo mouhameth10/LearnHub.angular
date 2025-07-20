@@ -21,6 +21,7 @@ export class ListFormationComponent implements OnInit, OnDestroy {
   loading_delete_formation = false;
   les_formations: FormationTafType[] = [];
   list: FormationTafType[] = [];
+  animateursList: any[] = [];
   filter: any = {
     text: [],
   };
@@ -32,6 +33,13 @@ export class ListFormationComponent implements OnInit, OnDestroy {
     console.groupCollapsed("ListFormationComponent");
     this.currentUser = this.api.token.user_connected;
     this.get_formation();
+     this.api.taf_post("utilisateur/get", {}, (reponse: any) => {
+    if (reponse.status) {
+      this.animateursList = (reponse.data || []).filter((u: any) => u.id_role === 3);
+    }
+  },(error: any) => {
+      this.loading_get_formation = false;
+    });
   }
 
   ngOnDestroy(): void {
@@ -127,7 +135,7 @@ export class ListFormationComponent implements OnInit, OnDestroy {
     });
   }
 
-  openModal_details_formation(formation: FormationTafType) {
+openModal_details_formation(formation: FormationTafType) {
     let options: any = {
       centered: true,
       scrollable: true,
@@ -135,11 +143,13 @@ export class ListFormationComponent implements OnInit, OnDestroy {
     };
     const modalRef = this.modalService.open(DetailsFormationComponent, { ...options, backdrop: 'static' });
     modalRef.componentInstance.formation = formation;
+    // Passe la liste globale des animateurs
+    modalRef.componentInstance.animateursList = this.animateursList || [];
     modalRef.result.then((result: any) => {
       console.log('Modal closed with:', result);
       if (result?.status) {
         this.get_formation();
       }
     });
-  }
+}
 }

@@ -12,6 +12,7 @@ export class FormationTafType {
 	fiche_programme?: string | null
 	statut?: string | null
 	etat?: string | null
+  animateur?: string; 
 	created_at?: string | null
 	updated_at?: string | null
     constructor() {

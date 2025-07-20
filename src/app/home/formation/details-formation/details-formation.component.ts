@@ -4,16 +4,18 @@ import { ApiService } from '../../../service/api/api.service';
 import { Router } from '@angular/router';
 import { FormationTafType } from '../taf-type/formation-taf-type';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-details-formation',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './details-formation.component.html',
   styleUrls: ['./details-formation.component.css']
 })
 export class DetailsFormationComponent {
   @Input() formation: FormationTafType | undefined;
+   @Input() animateursList: any[] = []; // <-- Ajouté ici
   loading_inscription: boolean = false;
   currentUser: any;
 
@@ -25,6 +27,16 @@ export class DetailsFormationComponent {
 
   ngOnInit(): void {
     this.currentUser = this.api.token.user_connected;
+  }
+ getAnimateurNoms(animateurStr: string): string[] {
+    if (!animateurStr) return [];
+    const ids = animateurStr.split(',').map(id => id.trim());
+    return ids
+      .map(id => {
+        const user = this.animateursList?.find(u => u.id_utilisateur == id);
+        return user ? user.username : id;
+      })
+      .filter(Boolean);
   }
 
   async registerToFormation() {
@@ -58,7 +70,7 @@ export class DetailsFormationComponent {
       id_formation: this.formation.id_formation,
       id_utilisateur: this.currentUser.id_utilisateur,
       date_inscription: new Date().toISOString().slice(0, 16),
-      statut: 'en attente',
+      statut: 'En attente',
       etat: 0
     };
 

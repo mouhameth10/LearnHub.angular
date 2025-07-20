@@ -4,17 +4,17 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="reactiveForm_edit_inscription" (ngSubmit)="onSubmit_edit_inscription()" #form_edit_inscription="ngForm" class="row">
-        
+
 <!-- Erreur : La clé étrangère id_formation de la table inscription n'est pas référencée -->
 <!-- Erreur : La clé étrangère id_utilisateur de la table inscription n'est pas référencée -->
 
             <!-- Champ Date Inscription -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="date_inscription">Date Inscription</label>
-              <input id="date_inscription" class="form-control" 
-                     type="text" 
-                     formControlName="date_inscription" 
-                     placeholder="Date Inscription"  
+              <input id="date_inscription" class="form-control"
+                     type="text"
+                     formControlName="date_inscription"
+                     placeholder="Date Inscription"
                      [ngClass]="{ 'is-invalid': submitted && f.date_inscription.errors }"/>
               @if (submitted && f.date_inscription.errors) {
                 <div class="invalid-feedback">
@@ -26,29 +26,31 @@
             </div>
 
             <!-- Champ Statut -->
-            <div class="form-group col-sm-12">
-              <label class="form-label" for="statut">Statut</label>
-              <input id="statut" class="form-control" 
-                     type="text" 
-                     formControlName="statut" 
-                     placeholder="Statut"  
-                     [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"/>
-              @if (submitted && f.statut.errors) {
-                <div class="invalid-feedback">
-                  @if (f.statut.errors.required) {
-                    <div>Ce champ est obligatoire</div>
-                  }
-                </div>
-              }
-            </div>
+           <div class="form-group col-sm-12">
+  <label class="form-label" for="statut">Statut</label>
+  <select
+    id="statut"
+    class="form-control"
+    formControlName="statut"
+    [ngClass]="{ 'is-invalid': submitted && f.statut.errors }"
+  >
+    <option value="">-- Sélectionnez le statut --</option>
+    <option value="En attente">En attente</option>
+    <option value="Accepté">Accepté</option>
+    <option value="Refusé">Refusé</option>
+  </select>
+  <div *ngIf="submitted && f.statut.errors" class="invalid-feedback">
+    <div *ngIf="f.statut.errors.required">Ce champ est obligatoire</div>
+  </div>
+</div>
 
             <!-- Champ Etat -->
             <div class="form-group col-sm-12">
               <label class="form-label" for="etat">Etat</label>
-              <input id="etat" class="form-control" 
-                     type="text" 
-                     formControlName="etat" 
-                     placeholder="Etat"  
+              <input id="etat" class="form-control"
+                     type="text"
+                     formControlName="etat"
+                     placeholder="Etat"
                      [ngClass]="{ 'is-invalid': submitted && f.etat.errors }"/>
               @if (submitted && f.etat.errors) {
                 <div class="invalid-feedback">

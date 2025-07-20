@@ -3,30 +3,55 @@
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-  @if (formation) {
-    <h5 class="text-primary fw-bold">{{ formation.intitule }}</h5>
-    <p><strong>Domaine :</strong> {{ formation.domaine }}</p>
-    <p><strong>Lieu :</strong> {{ formation.lieu }}</p>
-    <p><strong>Date :</strong> Du {{ formation.date_debut }} au {{ formation.date_fin }}</p>
-    <p><strong>Durée :</strong> {{ formation.duree }}</p>
-    <p><strong>Montant :</strong> {{ formation.montant }} FCFA</p>
-    <p><strong>Type :</strong> {{ formation.type_formation }}</p>
-    <p><strong>Statut :</strong> {{ formation.statut }}</p>
-  
-    <p><strong>Fiche programme :</strong> {{ formation.fiche_programme || 'Non disponible' }}</p>
-  } @else {
+  <ng-container *ngIf="formation; else noFormation">
+    <h5 class="text-primary fw-bold mb-3">{{ formation.intitule }}</h5>
+
+    <div class="mb-2" *ngIf="formation.animateur">
+      <span class="badge bg-info text-dark px-3 py-2">
+        <strong>Dispensé par :</strong>
+        <ng-container *ngIf="getAnimateurNoms(formation.animateur || '').length === 1">
+          {{ getAnimateurNoms(formation.animateur || '')[0] }}
+        </ng-container>
+        <ng-container *ngIf="getAnimateurNoms(formation.animateur || '').length > 1">
+          {{ getAnimateurNoms(formation.animateur || '').join(' et ') }}
+        </ng-container>
+      </span>
+    </div>
+
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item"><strong>Domaine :</strong> {{ formation.domaine }}</li>
+      <li class="list-group-item"><strong>Lieu :</strong> {{ formation.lieu }}</li>
+      <li class="list-group-item"><strong>Date :</strong> Du {{ formation.date_debut }} au {{ formation.date_fin }}</li>
+      <li class="list-group-item"><strong>Durée :</strong> {{ formation.duree }}</li>
+      <li class="list-group-item"><strong>Montant :</strong> {{ formation.montant }} FCFA</li>
+      <li class="list-group-item"><strong>Type :</strong> {{ formation.type_formation }}</li>
+<li class="list-group-item">
+  <strong>Statut :</strong>
+  <span
+    class="badge"
+    [ngClass]="{
+      'bg-success': formation.statut === 'Ouvert',
+      'bg-warning text-dark': formation.statut === 'En cours',
+      'bg-secondary': formation.statut === 'Clôturée'
+    }">
+    {{ formation.statut || 'Non défini' }}
+  </span>
+</li>      <li class="list-group-item"><strong>Fiche programme :</strong> {{ formation.fiche_programme || 'Non disponible' }}</li>
+    </ul>
+  </ng-container>
+  <ng-template #noFormation>
     <p class="text-danger">Aucune formation sélectionnée.</p>
-  }
+  </ng-template>
 </div>
 <div class="modal-footer">
-  @if (formation) {
+  <ng-container *ngIf="formation">
     <button type="button"
             class="btn btn-primary"
             [disabled]="loading_inscription"
             (click)="registerToFormation()">
       {{ loading_inscription ? "Inscription en cours ..." : "S'inscrire à la formation" }}
     </button>
-  }
+  </ng-container>
   <button type="button"
           class="btn btn-outline-secondary"
           (click)="activeModal.close()">Fermer</button>

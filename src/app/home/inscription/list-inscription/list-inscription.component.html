@@ -69,7 +69,15 @@
           <td>{{ one_inscription.username || one_inscription.id_utilisateur }}</td>
           <td>{{ one_inscription.intitule || one_inscription.id_formation }}</td>
           <td>{{ one_inscription.date_inscription }}</td>
-          <td>{{ one_inscription.statut }}</td>
+         <td>
+  <span class="badge"
+    [class.bg-warning]="one_inscription.statut === 'En attente'"
+    [class.text-dark]="one_inscription.statut === 'En attente'"
+    [class.bg-success]="one_inscription.statut === 'Accepté'"
+    [class.bg-danger]="one_inscription.statut === 'Refusé'">
+    {{ one_inscription.statut || 'Non défini' }}
+  </span>
+</td>
           <!-- <td>{{ one_inscription.etat === 0 ? 'Actif' : 'Inactif' }}</td> -->
           @if (currentUser && currentUser.id_role !== 2) {
             <td>
